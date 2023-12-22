@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+   
+</head>
+<body>
+<div class="SingUp-container">
+    <form [formGroup]="RegisrationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" formControlName="Name" autocomplete="off" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" formControlName="Email" autocomplete="off" required>
+
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" formControlName="PhoneNumber" autocomplete="off" required>
+        <label for="phone">Password</label>
+        <input type="tel" id="Password" name="Password" formControlName="Password" autocomplete="off" required>
+
+        <button type="submit" (click)="Register()">Register</button>
+    </form>
+    <div class="signin-link">
+        Already have account? <a routerLink="/Login">Sign In</a>
+    </div>
+</div>
+</body>
+</html>
