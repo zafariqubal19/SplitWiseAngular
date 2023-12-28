@@ -24,12 +24,12 @@ Login(formData:FormGroup){
 let loginmodel:LoginModel=new LoginModel();
 loginmodel.EmailId=formData.get('Email')?.value;
 loginmodel.Password=formData.get('Password')?.value;
-debugger;
-if(loginmodel.EmailId=="zafar@gmail.com" && loginmodel.Password=="zafar"){
+//   if (loginmodel.EmailId == "zafar@gmail.com" && loginmodel.Password == "zafar") {
+//     this.route.navigate(['/Home'])
+//   }
+// else{
+//   this.route.navigate(['/Login'])
+// }
 this.route.navigate(['/Home'])
-}
-else{
-  this.route.navigate(['/Login'])
-}
 }
 }

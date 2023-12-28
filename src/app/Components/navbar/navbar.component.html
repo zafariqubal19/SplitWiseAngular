@@ -1,17 +1,16 @@
 <nav class="nav">
 
-    <div class="navlist">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/Group">Groups</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/Expenses">Add Expenses</a>
-        </li>
-    
-      </ul>
+    <div class="navlist" >
+      <div>SplitWise</div>
+      <div style="margin-left: 800px;">
+        <form [formGroup]="Profile">
+        <select name="" id="">
+          <option value="">ProfileName</option>
+          <option value="">Your Account</option>
+          <option value="">Create Group</option>
+          <option value="">LogOut</option>
+        </select>
+        </form>
+      </div>
     </div>
   </nav>
