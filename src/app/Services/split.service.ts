@@ -9,7 +9,7 @@ export class SplitService {
 
   constructor(private http:HttpClient) { }
   getGroup():Observable<any>{
-    return this.http.get('');
+    return this.http.get('https://localhost:7154/api/Split/GetUsersGroups?groupdId=1');
   }
   CreatGroup(data:any):Observable<any>{
     return this.http.post('',data);
@@ -18,5 +18,9 @@ export class SplitService {
 
     const url='https://localhost:7154/api/Split/RegisterUser';
     return this.http.post(url,UserData);
+  }
+  GetGroupMember(groupId:any){
+    let url='https://localhost:7154/api/Split/GetGroupDetails?groupdId='+groupId;
+   return this.http.get(url)
   }
 }

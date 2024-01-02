@@ -21,6 +21,13 @@ body {
 .navlist{
   display: flex;
   justify-content: center;
+  cursor: pointer;
   
+}
+.Profile{
+  margin-left: 800px;
+}
+.navcomponent{
+  margin: 0px 3px 0px 30px;
 }
 

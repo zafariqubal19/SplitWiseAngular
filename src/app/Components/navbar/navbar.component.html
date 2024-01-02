@@ -1,8 +1,9 @@
 <nav class="nav">
 
     <div class="navlist" >
-      <div>SplitWise</div>
-      <div style="margin-left: 800px;">
+      <div class="navcomponent">SplitWise</div>
+      <div class="navcomponent" (click)="Group()">Groups</div>
+      <div  class="Profile" >
         <form [formGroup]="Profile">
         <select name="" id="">
           <option value="">ProfileName</option>
