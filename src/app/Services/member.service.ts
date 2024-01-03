@@ -16,4 +16,8 @@ export class MemberService {
     let url='https://localhost:7154/api/Split/AddMembers'
     return this.http.post(url,data)
   }
+  DeleteMember(GroupId:number,UserId:number){
+    let url=`https://localhost:7154/api/Split/DeleteMember?groupId=${GroupId}&userId=${UserId}`
+    return this.http.delete(url);
+  }
 }

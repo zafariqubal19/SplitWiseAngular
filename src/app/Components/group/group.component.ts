@@ -56,5 +56,11 @@ this.IsCreateGroup=true;
       }
     })
   }
-
+  DeleteGroup(item:any){
+    this.split.DeleteGroup(item.GroupId).subscribe((response:any)=>{
+      if(response==1){
+        alert("Group Deleted");
+      }
+    })
+  }
 }

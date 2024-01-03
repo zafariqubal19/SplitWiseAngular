@@ -12,6 +12,14 @@ AddExpenses(Expenses:Expense){
   let url='https://localhost:7154/api/Expenses/AddExpenes';
 return this.http.post(url,Expenses)
 }
+AllExpenses(GroupId:number){
+  let url=`https://localhost:7154/api/Expenses/GetAllExpenses?GroupId=${GroupId}`;
+ return this.http.get(url)
+}
+DeleteExpenses(expensdId:number){
+  let url=`https://localhost:7154/api/Expenses/DeleteExpenses?ExpenseId=${expensdId}`
+  return this.http.delete(url);
+}
 
 
 }

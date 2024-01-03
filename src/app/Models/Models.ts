@@ -18,3 +18,12 @@ export class Expense{
     TotalAmount:number;
 
 }
+export class AllExpenseDetails{
+    ExpenseId:number;
+    GroupId:number;
+    UserId:number;
+    Description:string;
+    Spender:string;
+    TotalAmount:number;
+
+}

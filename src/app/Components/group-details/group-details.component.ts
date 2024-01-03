@@ -20,10 +20,13 @@ export class GroupDetailsComponent implements OnInit {
   ExpenseAdditionForm:any=FormGroup;
   IsAddingExpense:boolean=false;
   User:any;
+  IsShowExpense:boolean=false;
+  AllExpenseDetails:any=[];
   constructor(private split:SplitService ,private route:ActivatedRoute,
     private fb:FormBuilder,private member:MemberService,private expense:ExpenseService) { }
 
   ngOnInit(): void {
+
     const userstore=sessionStorage.getItem('user');
     this.User=userstore?JSON.parse(userstore):null
     console.log(this.User)
@@ -55,7 +58,7 @@ export class GroupDetailsComponent implements OnInit {
           Description:['',Validators.required],
           TotalAmount:['',Validators.required]
         })
-        
+        this.AllExpenses();
   }
 AddMembers(){
   let email=this.AddMembersForm.get('Email')?.value;
@@ -68,8 +71,12 @@ ShowForm(){
   this.IsAddingMember=true;
   this.IsAddingExpense=false;
 }
-DeleteMember(memberId:number){
-alert(memberId)
+DeleteMember(members:any){
+this.member.DeleteMember(this.GroupId!,members.UserId).subscribe((response:any)=>{
+  if(response>0){
+    alert("Member Deleted")
+  }
+})
 }
 AddExpense(){
   let Expenses:Expense=new Expense();
@@ -88,8 +95,33 @@ alert(response)
 ShowExpense(){
   this.IsAddingMember=false;
 this.IsAddingExpense=true;
+this.IsShowExpense=false;
 }
-onSubmit(){
-
+AllExpenses(){
+  this.expense.AllExpenses(this.GroupId!).subscribe((response:any)=>{
+    console.log(response)
+    if(this.AllExpenseDetails.length==0){
+    response.forEach((e:any)=>{
+      this.AllExpenseDetails.push({
+        ExpenseId:e.expenseId,
+        GroupId:e.groupId,
+        UserId:e.userId,
+        Description:e.description,
+        Spender:e.spender,
+        TotalAmount:e.totalAmount
+      })
+    })
+  }
+  })
+this.IsShowExpense=true;
+this.IsAddingMember=false;
+this.IsAddingExpense=false;
+}
+DeleteExpense(expenseId:number){
+this.expense.DeleteExpenses(expenseId).subscribe((response:any)=>{
+  if(response>0){
+    alert("Expense Deleted");
+  }
+})
 }
 }

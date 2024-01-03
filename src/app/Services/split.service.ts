@@ -28,4 +28,8 @@ export class SplitService {
     let url='https://localhost:7154/api/Split/GetGroupDetails?groupdId='+groupId;
    return this.http.get(url)
   }
+  DeleteGroup(GroupId:number){
+    let url=''
+    return this.http.delete(url);
+  }
 }
