@@ -9,3 +9,12 @@ export class RegistrationModel{
     PhoneNumber:string;
     Password:string;
 }
+export class Expense{
+    ExpenseId:number;
+    GroupId:number;
+    UserId:number;
+    Description:string;
+    Spender:string;
+    TotalAmount:number;
+
+}

@@ -8,11 +8,16 @@ import { Observable } from 'rxjs';
 export class SplitService {
 
   constructor(private http:HttpClient) { }
-  getGroup():Observable<any>{
-    return this.http.get('https://localhost:7154/api/Split/GetUsersGroups?groupdId=1');
+  getGroup(UserId:number):Observable<any>{
+    return this.http.get(`https://localhost:7154/api/Split/GetUsersGroups?UserId=${UserId}`);
   }
-  CreatGroup(data:any):Observable<any>{
-    return this.http.post('',data);
+  CreatGroup(groupName:string,UserId:number):Observable<any>{
+    const data={
+        groupName:groupName,
+        UserId:UserId
+    }
+    let url=`https://localhost:7154/api/Split/CreateGroup`
+    return this.http.post(url,data);
   }
   RegisterUser(UserData:any):Observable<any>{
 

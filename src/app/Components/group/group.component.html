@@ -7,7 +7,17 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of Groups" (click)="getMemmber(item)"><td>{{item.GroupName}}</td></tr>
+        
     </tbody>
+    
 </table>
-
+<button (click)="groupForm()">CreateGroup</button>
+<form action="" *ngIf="IsCreateGroup" [formGroup]="groupCreationForm">
+<!-- <Label>GroupName</Label>
+<input type="text" id="" name=" " formControlName="GroupName">
+<input type="submit" (click)="createGroup()"> -->
+<label for="input1">GroupName</label>
+<input type="text" id="Description" class="styled-input" formControlName="GroupName">
+<button type="button" class="submit-button" (click)="createGroup()">Create</button>
+</form>
 </div>

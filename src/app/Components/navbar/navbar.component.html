@@ -4,14 +4,12 @@
       <div class="navcomponent">SplitWise</div>
       <div class="navcomponent" (click)="Group()">Groups</div>
       <div  class="Profile" >
-        <form [formGroup]="Profile">
-        <select name="" id="">
-          <option value="">ProfileName</option>
-          <option value="">Your Account</option>
-          <option value="">Create Group</option>
-          <option value="">LogOut</option>
+        <select name="" id="" [(ngModel)]="selectedOption" (change)="onDropDownChange()">
+          <option value="Profile">ProfileName</option>
+          <option value="Account" >Your Account</option>
+          <option value="CreateGroup">Create Group</option>
+          <option value="Logout">LogOut</option>
         </select>
-        </form>
       </div>
     </div>
   </nav>

@@ -1,0 +1,46 @@
+<div>
+    <label for="">GroupMembers</label>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>MemberId</th>
+                <th>TotalAmountSpent</th>
+                <th>TotalAmountToGive</th>
+                <th>TotalAmountToReceive</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of GroupMembers">
+                <td>{{item.Name}}</td>
+                <td>{{item.Email}}</td>
+                <td>{{item.TotalAmountSpent}}</td>
+                <td>{{item.TotalAmountToGive}}</td>
+                <td>{{item.TotalAmountToReceive}}</td>
+                <td><button (click)="DeleteMember(item.MemberId)">RemoveFromGroup</button></td>
+            </tr>
+        </tbody>
+    </table>
+<button (click)="ShowForm()">AddMembers</button>
+<button (click)="ShowExpense()">AddExpenses</button>
+<form [formGroup]="AddMembersForm" *ngIf="IsAddingMember">
+    <div class="styled-form">
+        <label for="input1">Add Members</label>
+    <input type="text" name="" id="" formControlName="Email" class="styled-input">
+    <input type="submit" (click)="AddMembers()" class="submit-button">
+</div>
+</form>
+<form [formGroup]="ExpenseAdditionForm" *ngIf="IsAddingExpense">
+    
+<div class="styled-form">
+    <label for="Description">Description</label>
+    <input type="text" id="Description" class="styled-input" formControlName="Description">
+
+     <label for="TotalAmount">TotalAmount</label>
+    <input type="text" id="TotalAmount" class="styled-input" formControlName="TotalAmount">
+  
+    <button type="button" class="submit-button"(click)="AddExpense()" >AddExpense</button>
+  </div>
+</form>
+</div>

@@ -11,7 +11,10 @@ import { HomeComponent } from './Components/home/home.component';
 import { NavbarComponent } from './Components/navbar/navbar.component';
 import { GroupComponent } from './Components/group/group.component';
 import { ExpensesComponent } from './Components/expenses/expenses.component';
-import{HttpClientModule} from '@angular/common/http'
+import{HttpClientModule} from '@angular/common/http';
+import { AccountComponent } from './Components/account/account.component';
+import { GroupDetailsComponent } from './Components/group-details/group-details.component';
+
 
 
 @NgModule({
@@ -24,6 +27,9 @@ import{HttpClientModule} from '@angular/common/http'
     NavbarComponent,
     GroupComponent,
     ExpensesComponent,
+    AccountComponent,
+    GroupDetailsComponent,
+
    
 
   ],

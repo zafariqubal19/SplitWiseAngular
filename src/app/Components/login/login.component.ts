@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 //import { LoginModel } from '/Models/Models';
 import { LoginModel } from 'src/app/Models/Models';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/Services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
   LoginForm:any=FormGroup;
-  constructor( private fb:FormBuilder,private route:Router) { }
+  constructor( private fb:FormBuilder,private route:Router,private user:UserService) { }
 
   ngOnInit(): void {
 
@@ -24,12 +25,15 @@ Login(formData:FormGroup){
 let loginmodel:LoginModel=new LoginModel();
 loginmodel.EmailId=formData.get('Email')?.value;
 loginmodel.Password=formData.get('Password')?.value;
-//   if (loginmodel.EmailId == "zafar@gmail.com" && loginmodel.Password == "zafar") {
-//     this.route.navigate(['/Home'])
-//   }
-// else{
-//   this.route.navigate(['/Login'])
-// }
-this.route.navigate(['/Home'])
+this.user.Login(loginmodel.EmailId,loginmodel.Password).subscribe((response:any)=>{
+  if(response.userId!=0){
+    const user=JSON.stringify(response);
+    sessionStorage.setItem('user',user)
+    this.route.navigate(['/Home'])
+  }
+
+})
+
+
 }
 }
