@@ -22,17 +22,25 @@ export class GroupDetailsComponent implements OnInit {
   User:any;
   IsShowExpense:boolean=false;
   AllExpenseDetails:any=[];
+  UserName:string;
+  CreatorId:number|null;
+  IsCreator:boolean=false;
   constructor(private split:SplitService ,private route:ActivatedRoute,
     private fb:FormBuilder,private member:MemberService,private expense:ExpenseService) { }
 
   ngOnInit(): void {
-
     const userstore=sessionStorage.getItem('user');
     this.User=userstore?JSON.parse(userstore):null
-    console.log(this.User)
-    let param = this.route.snapshot.paramMap.get('GroupId');
-    this.GroupId=parseInt(param!,10)
-    console.log(this.GroupId)
+    this.UserName=this.User.name;
+    let paramGroupId = this.route.snapshot.paramMap.get('GroupId');
+    let paramCreatorId=this.route.snapshot.paramMap.get('CreatorId');
+    this.GroupId=parseInt(paramGroupId!,10);
+    this.CreatorId=parseInt(paramCreatorId!,10);
+    if(this.CreatorId==this.User.userId){
+      this.IsCreator=true;
+    }
+
+    console.log(this.GroupId,this.CreatorId)
     this.split.GetGroupMember(this.GroupId).subscribe((response:any)=>{
       console.log(response)
         response.members.forEach((element:any)=>{
@@ -47,9 +55,7 @@ export class GroupDetailsComponent implements OnInit {
 
           })
          })
-      
-     
-      
+
         })
         this.AddMembersForm=this.fb.group({
          Email:['',Validators.required] 
@@ -58,14 +64,13 @@ export class GroupDetailsComponent implements OnInit {
           Description:['',Validators.required],
           TotalAmount:['',Validators.required]
         })
-        this.AllExpenses();
   }
 AddMembers(){
   let email=this.AddMembersForm.get('Email')?.value;
   this.member.AddMembers(email,this.GroupId!).subscribe((response:any)=>{
     console.log(response)
   })
-
+this.AddMembersForm.reset();
 }
 ShowForm(){
   this.IsAddingMember=true;
@@ -90,6 +95,7 @@ console.log(Expenses)
 this.expense.AddExpenses(Expenses).subscribe((response:any)=>{
 alert(response)
 })
+this.ExpenseAdditionForm.reset();
 
 }
 ShowExpense(){

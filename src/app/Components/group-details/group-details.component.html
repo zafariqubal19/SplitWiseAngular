@@ -1,9 +1,10 @@
 <div>
     <div>
-    <button (click)="ShowForm()">AddMembers</button>
+    <button (click)="ShowForm()" *ngIf="IsCreator">AddMembers</button>
 <button (click)="ShowExpense()">AddExpenses</button>
 <button (click)="AllExpenses()">AllExpenses</button>
 </div>
+<div>{{UserName}}</div>
 <div>
     <label for="">GroupMembers</label>
     <table>
@@ -23,13 +24,13 @@
                 <td>{{item.TotalAmountSpent}}</td>
                 <td>{{item.TotalAmountToGive}}</td>
                 <td>{{item.TotalAmountToReceive}}</td>
-                <td><button (click)="DeleteMember(item)">Delete</button></td>
+                <td *ngIf="IsCreator"><button (click)="DeleteMember(item)">Delete</button></td>
             </tr>
         </tbody>
     </table>
 </div>
-<div *ngIf="IsShowExpense">
-<label for="">AllExpenses</label>
+<div *ngIf="IsShowExpense">{{IsShowExpense}}
+<label for="">All Expenses</label>
 <table >
     <thead>
         <tr>
@@ -43,7 +44,7 @@
             <td>{{item.Description}}</td>
             <td>{{item.Spender}}</td>
             <td>{{item.TotalAmount}}</td>
-            <td><button (click)="DeleteExpense(item.ExpenseId)">Delete</button></td>
+            <td><button (click)="DeleteExpense(item.ExpenseId)" *ngIf="IsCreator">Delete</button></td>
         </tr>
     </tbody>
 </table>

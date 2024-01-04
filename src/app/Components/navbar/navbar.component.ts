@@ -12,7 +12,11 @@ export class NavbarComponent implements OnInit {
 Profile:any=FormGroup;
   constructor(private fb:FormBuilder,private router:Router) { }
   selectedOption:string='';
+  user:any;
   ngOnInit(): void {
+    const userstore=sessionStorage.getItem('user');
+    this.user=userstore?JSON.parse(userstore):null
+    
   }
 Group(){
   this.router.navigate(['/Group']);
@@ -22,7 +26,7 @@ onDropDownChange(){
     this.router.navigate(['/Account'])
   }
   else if(this.selectedOption=="CreateGroup"){
-    this.router.navigate(['/CreateGroup'])
+    this.router.navigate(['/Group'])
   }
   else if(this.selectedOption=='Logout'){
     this.router.navigate(['/Login'])

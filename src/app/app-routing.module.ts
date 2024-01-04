@@ -4,7 +4,6 @@ import { LoginComponent } from './Components/login/login.component';
 import { RegisterComponent } from './Components/register/register.component';
 import { SplitExpenseComponent } from './Components/split-expense/split-expense.component';
 import { HomeComponent } from './Components/home/home.component';
-import { group } from '@angular/animations';
 import { GroupComponent } from './Components/group/group.component';
 import { ExpensesComponent } from './Components/expenses/expenses.component';
 import { AccountComponent } from './Components/account/account.component';
@@ -19,7 +18,7 @@ const routes: Routes = [
   {path:'Group',component:GroupComponent},
   {path:'Expenses',component:ExpensesComponent},
   {path:'Account',component:AccountComponent},
-  {path:'GroupDetails/:GroupId',component:GroupDetailsComponent}
+  {path:'GroupDetails/:GroupId/:CreatorId',component:GroupDetailsComponent}
 ];
 
 @NgModule({

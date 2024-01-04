@@ -21,11 +21,13 @@ IsMemberAvailable:boolean=false;
     const userstore=sessionStorage.getItem('user');
     this.user=userstore?JSON.parse(userstore):null
     this.split.getGroup(this.user.userId).subscribe((respnse:any)=>{
+      console.log(respnse.groups)
      respnse.groups.forEach((element:any) => {
       this.Groups.push(
         {
           GroupName:element.groupName,
-          GroupId:element.groupId
+          GroupId:element.groupId,
+          CreatorId:element.creatorId
         }
       )
       
@@ -37,8 +39,7 @@ IsMemberAvailable:boolean=false;
     })
   }
   getMemmber(item:any){
-    console.log(item)
-   this.router.navigate(['/GroupDetails',item.GroupId])
+   this.router.navigate(['/GroupDetails',item.GroupId,item.CreatorId])
 
   }
   groupForm(){
@@ -55,6 +56,7 @@ this.IsCreateGroup=true;
         alert("Group created")
       }
     })
+    this.groupCreationForm.reset();
   }
   DeleteGroup(item:any){
     this.split.DeleteGroup(item.GroupId).subscribe((response:any)=>{

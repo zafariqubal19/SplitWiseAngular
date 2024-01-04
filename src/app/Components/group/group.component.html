@@ -3,13 +3,12 @@
     <thead>
         <tr>
             <th>GroupName</th>
-            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let item of Groups" >
             <td (click)="getMemmber(item)">{{item.GroupName}}</td>
-            <td><button (click)="DeleteGroup(item)">Delete</button></td>
+           <!-- <td><button (click)="DeleteGroup(item)">Delete</button></td> -->
         </tr>
         
     </tbody>

@@ -22,6 +22,7 @@ Password:['',[Validators.required]]
 })
   }
 Login(formData:FormGroup){
+
 let loginmodel:LoginModel=new LoginModel();
 loginmodel.EmailId=formData.get('Email')?.value;
 loginmodel.Password=formData.get('Password')?.value;
@@ -31,6 +32,10 @@ this.user.Login(loginmodel.EmailId,loginmodel.Password).subscribe((response:any)
     sessionStorage.setItem('user',user)
     this.route.navigate(['/Home'])
   }
+  else{
+    alert("Incorrect Email or password")
+  }
+  this.LoginForm.reset();
 
 })
 

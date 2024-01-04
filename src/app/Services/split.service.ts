@@ -19,11 +19,7 @@ export class SplitService {
     let url=`https://localhost:7154/api/Split/CreateGroup`
     return this.http.post(url,data);
   }
-  RegisterUser(UserData:any):Observable<any>{
 
-    const url='https://localhost:7154/api/Split/RegisterUser';
-    return this.http.post(url,UserData);
-  }
   GetGroupMember(groupId:any){
     let url='https://localhost:7154/api/Split/GetGroupDetails?groupdId='+groupId;
    return this.http.get(url)
