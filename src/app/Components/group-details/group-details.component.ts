@@ -25,6 +25,10 @@ export class GroupDetailsComponent implements OnInit {
   UserName:string;
   CreatorId:number|null;
   IsCreator:boolean=false;
+  MyAllExpenses:any=[];
+  IsMyExpenses:boolean=false;
+  AllMyExpenses:any=[];
+  
   constructor(private split:SplitService ,private route:ActivatedRoute,
     private fb:FormBuilder,private member:MemberService,private expense:ExpenseService) { }
 
@@ -98,10 +102,11 @@ alert(response)
 this.ExpenseAdditionForm.reset();
 
 }
-ShowExpense(){
+ShowExpenseForm(){
   this.IsAddingMember=false;
 this.IsAddingExpense=true;
 this.IsShowExpense=false;
+this.IsMyExpenses=false;
 }
 AllExpenses(){
   this.expense.AllExpenses(this.GroupId!).subscribe((response:any)=>{
@@ -129,5 +134,39 @@ this.expense.DeleteExpenses(expenseId).subscribe((response:any)=>{
     alert("Expense Deleted");
   }
 })
+}
+MyExpenses(){
+  this.expense.AllMyExpenses(this.User.userId,this.GroupId!).subscribe((response:any)=>{
+    if(response.length!=0){
+      if(this.AllMyExpenses.length==0){
+        response.forEach((e:any)=>{
+          this.AllMyExpenses.push({
+            ExpenseId:e.expenseId,
+          GroupId:e.groupId,
+          UserId:e.userId,
+          Description:e.description,
+          Spender:e.spender,
+          TotalAmount:e.totalAmount
+          })
+     })
+      }
+    }
+    else{
+      alert("No")
+    }
+ 
+   
+  })
+  this.IsMyExpenses=true;
+}
+SettleExpense(){
+  this.expense.SettleExpense(this.GroupId!).subscribe((response:any)=>{
+    if(response>0){
+      alert("Your have been Settled");
+    }
+    else{
+      alert("Something went wrong")
+    }
+  })
 }
 }

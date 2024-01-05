@@ -20,6 +20,15 @@ DeleteExpenses(expensdId:number){
   let url=`https://localhost:7154/api/Expenses/DeleteExpenses?ExpenseId=${expensdId}`
   return this.http.delete(url);
 }
+AllMyExpenses(UserId:number,GroupId:number){
+let url=`https://localhost:7154/api/Expenses/GetAllMyExpenses?UserId=${UserId}&GroupId=${GroupId}`;
+return this.http.get(url)
+}
+SettleExpense(GroupId:number){
+  
+  let url=`https://localhost:7154/api/Expenses/SettleUp`
+  return this.http.put(url,GroupId);
+}
 
 
 }

@@ -1,8 +1,10 @@
 <div>
     <div>
     <button (click)="ShowForm()" *ngIf="IsCreator">AddMembers</button>
-<button (click)="ShowExpense()">AddExpenses</button>
+<button (click)="ShowExpenseForm()">AddExpenses</button>
 <button (click)="AllExpenses()">AllExpenses</button>
+<button (click)="MyExpenses()">MyExpenses</button>
+<button (click)="SettleExpense()" *ngIf="IsCreator">SettleUp</button>
 </div>
 <div>{{UserName}}</div>
 <div>
@@ -29,7 +31,7 @@
         </tbody>
     </table>
 </div>
-<div *ngIf="IsShowExpense">{{IsShowExpense}}
+<div *ngIf="IsShowExpense">
 <label for="">All Expenses</label>
 <table >
     <thead>
@@ -41,6 +43,27 @@
     </thead>
     <tbody>
         <tr *ngFor="let item of AllExpenseDetails">
+            <td>{{item.Description}}</td>
+            <td>{{item.Spender}}</td>
+            <td>{{item.TotalAmount}}</td>
+            <td><button (click)="DeleteExpense(item.ExpenseId)" *ngIf="IsCreator">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+
+</div>
+<div *ngIf="IsMyExpenses">
+<label for="">My Expenses</label>
+<table >
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th>Spender</th>
+            <th>TotalAmount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of AllMyExpenses">
             <td>{{item.Description}}</td>
             <td>{{item.Spender}}</td>
             <td>{{item.TotalAmount}}</td>

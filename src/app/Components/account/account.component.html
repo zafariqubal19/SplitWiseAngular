@@ -1,1 +1,21 @@
-<p>account works!</p>
+<div class="profile-container">
+
+  <div class="user-details" *ngIf="IsEditable; else EditableForm">
+    <p><label>Name:</label> {{ user.name }}</p>
+    <p><label>Email:</label> {{ user.email }}</p>
+    <p><label>Phone Number:</label> {{ user.phoneNumber }}</p>
+    <button (click)="Edit()">Edit</button>
+  </div>
+
+  <ng-template #EditableForm>
+    <form [formGroup]="UserEditForm">
+    <label for="input1">Name</label>
+<input type="text" id="Name" class="styled-input" formControlName="Name">
+<label for="input1">Email</label>
+<input type="text" id="Email" class="styled-input" formControlName="Email">
+<label for="input1">Phone Number</label>
+<input type="text" id="PhoneNumber" class="styled-input" formControlName="PhoneNumber">
+<button>Save</button>
+</form>
+  </ng-template>
+</div>
